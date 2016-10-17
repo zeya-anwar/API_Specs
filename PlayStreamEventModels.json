@@ -2286,6 +2286,43 @@
           ]
         },
         {
+          "name": "title_api_settings_changed",
+          "className": "TitleAPISettingsChangedEventData",
+          "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+          "assembly": "PlayFab.PlayStreamEvent.Models",
+          "description": "This event is triggered when an API Features setting is changed for the title.",
+          "properties": [
+            {
+              "name": "PreviousSettingsValues",
+              "description": "Settings values before the change.",
+              "jsontype": "Object",
+              "actualtype": "APISettings",
+              "isclass": true,
+              "optional": true
+            },
+            {
+              "name": "SettingsValues",
+              "description": "Settings values after the change.",
+              "jsontype": "Object",
+              "actualtype": "APISettings",
+              "isclass": true,
+              "optional": true
+            },
+            {
+              "name": "UserId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "DeveloperId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            }
+          ]
+        },
+        {
           "name": "title_catalog_updated",
           "className": "TitleCatalogUpdatedEventData",
           "classNameSpace": "PlayFab.PlayStreamEvent.Models",
@@ -3927,6 +3964,70 @@
           "actualtype": "PlayerStatistic",
           "isclass": true,
           "optional": true
+        }
+      ]
+    },
+    {
+      "name": "APISettings",
+      "className": "APISettings",
+      "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+      "assembly": "PlayFab.PlayStreamEvent.Models",
+      "properties": [
+        {
+          "name": "AllowClientToAddVirtualCurrency",
+          "description": "Allow game clients to add to virtual currency balances via API.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "AllowClientToSubtractVirtualCurrency",
+          "description": "Allow game clients to subtract from virtual currency balances via API.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "AllowClientToPostPlayerStatistics",
+          "description": "Allow game clients to update statistic values via API.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "AllowClientToStartGames",
+          "description": "Allow clients to start multiplayer game sessions via API.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "AllowServerToDeleteUsers",
+          "description": "Allow game servers to delete player accounts via API.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "UseSandboxPayments",
+          "description": "Use payment provider's sandbox mode (if available) for real-money purchases. This can be useful when testing in-game purchasing in order to avoid being charged.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "UseExternalGameServerProvider",
+          "description": "Multiplayer game sessions are hosted on servers external to PlayFab.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "AllowNonUniquePlayerDisplayNames",
+          "description": "Allow players to choose display names that may be in use by other players, i.e. do not enforce uniqueness of display names. Note: if this option is enabled, it cannot be disabled later.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
         }
       ]
     },
