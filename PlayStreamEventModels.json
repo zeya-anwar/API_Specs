@@ -1490,6 +1490,14 @@
               "optional": true
             },
             {
+              "name": "PurchasedProduct",
+              "description": "The name of the purchased item, if applicable.",
+              "collection": "array",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
               "name": "TitleId",
               "description": "The ID of the title to which this player event applies.",
               "jsontype": "String",
