@@ -2419,6 +2419,58 @@
           ]
         },
         {
+          "name": "title_completed_task",
+          "className": "TitleCompletedTaskEventData",
+          "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+          "assembly": "PlayFab.PlayStreamEvent.Models",
+          "description": "This event is triggered when a scheduled task has completed",
+          "properties": [
+            {
+              "name": "TaskType",
+              "description": "Type of the scheduled task",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "TaskInstanceId",
+              "description": "ID of the running instance of the task",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "IsAborted",
+              "description": "Whether the task was aborted.",
+              "jsontype": "Boolean",
+              "actualtype": "Boolean",
+              "optional": false
+            },
+            {
+              "name": "AbortedAt",
+              "description": "Timestamp on when the task was aborted. Null if task never was aborted.",
+              "jsontype": "String",
+              "actualtype": "DateTime",
+              "optional": true
+            },
+            {
+              "name": "Result",
+              "description": "Result of the task run, whether it has succeeded, failed or aborted.",
+              "jsontype": "String",
+              "actualtype": "ScheduledJobStatus",
+              "isenum": true,
+              "optional": true
+            },
+            {
+              "name": "ResultState",
+              "description": "Result state object of the task run. Different task types have different result state structure.",
+              "jsontype": "Object",
+              "actualtype": "object",
+              "optional": true
+            }
+          ]
+        },
+        {
           "name": "title_exceeded_limit",
           "className": "TitleExceededLimitEventData",
           "classNameSpace": "PlayFab.PlayStreamEvent.Models",
@@ -2846,7 +2898,7 @@
           "className": "TitleScheduledCloudScriptExecutedEventData",
           "classNameSpace": "PlayFab.PlayStreamEvent.Models",
           "assembly": "PlayFab.PlayStreamEvent.Models",
-          "description": "This event is triggered when a CloudScript function is run at a pre-scheduled time.",
+          "description": "This event is triggered when a CloudScript function is run by a scheduled task.",
           "properties": [
             {
               "name": "ScheduledTask",
@@ -2869,6 +2921,51 @@
               "jsontype": "Object",
               "actualtype": "ExecuteCloudScriptResult",
               "isclass": true,
+              "optional": true
+            }
+          ]
+        },
+        {
+          "name": "title_started_task",
+          "className": "TitleStartedTaskEventData",
+          "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+          "assembly": "PlayFab.PlayStreamEvent.Models",
+          "description": "This event is triggered when a task is scheduled to run.",
+          "properties": [
+            {
+              "name": "ScheduledTask",
+              "description": "Identity of the scheduled task",
+              "jsontype": "Object",
+              "actualtype": "NameIdentifier",
+              "isclass": true,
+              "optional": true
+            },
+            {
+              "name": "TaskType",
+              "description": "Type of the scheduled task",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "Parameter",
+              "description": "Parameter of the scheduled task",
+              "jsontype": "Object",
+              "actualtype": "object",
+              "optional": true
+            },
+            {
+              "name": "TaskInstanceId",
+              "description": "ID of the running instance of the task",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "ScheduledByUserId",
+              "description": "ID of user who manually scheduled the task, null if scheduled automatically",
+              "jsontype": "String",
+              "actualtype": "String",
               "optional": true
             }
           ]
@@ -4040,6 +4137,36 @@
       ]
     },
     {
+      "name": "ScheduledJobStatus",
+      "className": "ScheduledJobStatus",
+      "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+      "assembly": "PlayFab.PlayStreamEvent.Models",
+      "AnyInclusiveFlags": [
+        "Beta"
+      ],
+      "isenum": true,
+      "enumvalues": [
+        {
+          "name": "Succeeded"
+        },
+        {
+          "name": "Starting"
+        },
+        {
+          "name": "InProgress"
+        },
+        {
+          "name": "Failed"
+        },
+        {
+          "name": "Aborted"
+        },
+        {
+          "name": "Pending"
+        }
+      ]
+    },
+    {
       "name": "StatisticAggregationMethod",
       "className": "StatisticAggregationMethod",
       "classNameSpace": "PlayFab.PlayStreamEvent.Models",
@@ -4202,6 +4329,27 @@
       ]
     },
     {
+      "name": "NameIdentifier",
+      "className": "NameIdentifier",
+      "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+      "assembly": "PlayFab.PlayStreamEvent.Models",
+      "description": "Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is immutable and unique.",
+      "properties": [
+        {
+          "name": "Name",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Id",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        }
+      ]
+    },
+    {
       "name": "StatisticResetIntervalOption",
       "className": "StatisticResetIntervalOption",
       "classNameSpace": "PlayFab.PlayStreamEvent.Models",
@@ -4242,6 +4390,12 @@
           "jsontype": "String",
           "actualtype": "String",
           "optional": true
+        },
+        {
+          "name": "IsEmpty",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
         }
       ]
     },
