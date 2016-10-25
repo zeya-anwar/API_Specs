@@ -2124,6 +2124,20 @@
           "jsontype": "String",
           "actualtype": "DateTime",
           "optional": true
+        },
+        {
+          "name": "ServerHostname",
+          "description": "IP address of the server",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "ServerPort",
+          "description": "port number to use for non-http communications with the server",
+          "jsontype": "Number",
+          "actualtype": "int32",
+          "optional": true
         }
       ]
     },
