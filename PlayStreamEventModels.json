@@ -374,6 +374,37 @@
               "optional": true
             }
           ]
+        },
+        {
+          "name": "player_photon_session_authenticated",
+          "className": "PlayerPhotonSessionAuthenticatedEventData",
+          "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+          "assembly": "PlayFab.PlayStreamEvent.Models",
+          "description": "This event is triggered when a player connects to a Photon Cloud application and authenticates with PlayFab using Photon custom authentication.",
+          "properties": [
+            {
+              "name": "PhotonApplicationId",
+              "description": "Unique identifier of the Photon Cloud application to which the player is connected",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "PhotonApplicationType",
+              "description": "Type of Photon Cloud application to which the player is connected",
+              "jsontype": "String",
+              "actualtype": "PhotonServicesEnum",
+              "isenum": true,
+              "optional": true
+            },
+            {
+              "name": "TitleId",
+              "description": "The ID of the title to which this player event applies.",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            }
+          ]
         }
       ]
     },
@@ -4396,6 +4427,24 @@
           "jsontype": "Boolean",
           "actualtype": "Boolean",
           "optional": false
+        }
+      ]
+    },
+    {
+      "name": "PhotonServicesEnum",
+      "className": "PhotonServicesEnum",
+      "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+      "assembly": "PlayFab.PlayStreamEvent.Models",
+      "isenum": true,
+      "enumvalues": [
+        {
+          "name": "Realtime"
+        },
+        {
+          "name": "Turnbased"
+        },
+        {
+          "name": "Chat"
         }
       ]
     },
