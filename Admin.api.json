@@ -8965,6 +8965,10 @@
     "SteamNotEnabledForTitle": {
       "id": 1258,
       "name": "SteamNotEnabledForTitle"
+    },
+    "LimitNotAnUpgradeOption": {
+      "id": 1259,
+      "name": "LimitNotAnUpgradeOption"
     }
   },
   "errorList": [
@@ -9216,6 +9220,7 @@
     "ScheduledTaskCreateConflict",
     "InvalidScheduledTaskName",
     "InvalidTaskSchedule",
-    "SteamNotEnabledForTitle"
+    "SteamNotEnabledForTitle",
+    "LimitNotAnUpgradeOption"
   ]
 }
