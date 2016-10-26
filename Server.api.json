@@ -6736,6 +6736,13 @@
           "actualtype": "StatisticUpdate",
           "isclass": true,
           "optional": false
+        },
+        {
+          "name": "ForceUpdate",
+          "description": "Indicates whether the statistics provided should be set, regardless of the aggregation method set on the statistic. Default is false.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": true
         }
       ]
     },
