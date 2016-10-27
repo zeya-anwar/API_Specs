@@ -2488,13 +2488,13 @@
               "name": "Result",
               "description": "Result of the task run, whether it has succeeded, failed or aborted.",
               "jsontype": "String",
-              "actualtype": "ScheduledJobStatus",
+              "actualtype": "TaskInstanceStatus",
               "isenum": true,
               "optional": true
             },
             {
-              "name": "ResultState",
-              "description": "Result state object of the task run. Different task types have different result state structure.",
+              "name": "Summary",
+              "description": "Summary of the task run. Different task types have different summary structure.",
               "jsontype": "Object",
               "actualtype": "object",
               "optional": true
@@ -4168,8 +4168,8 @@
       ]
     },
     {
-      "name": "ScheduledJobStatus",
-      "className": "ScheduledJobStatus",
+      "name": "TaskInstanceStatus",
+      "className": "TaskInstanceStatus",
       "classNameSpace": "PlayFab.PlayStreamEvent.Models",
       "assembly": "PlayFab.PlayStreamEvent.Models",
       "AnyInclusiveFlags": [
