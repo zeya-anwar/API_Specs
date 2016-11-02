@@ -2957,6 +2957,62 @@
           ]
         },
         {
+          "name": "title_secret_key_changed",
+          "className": "TitleSecretKeyEventData",
+          "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+          "assembly": "PlayFab.PlayStreamEvent.Models",
+          "description": "This event is triggered when a title adds or updates a Secret Key",
+          "properties": [
+            {
+              "name": "SecretKeyId",
+              "description": "Id of the secret key affected.",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "SecretKeyName",
+              "description": "Name of the secret key affected.",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "Disabled",
+              "description": "Flag indicating if the key is disabled",
+              "jsontype": "Boolean",
+              "actualtype": "Boolean",
+              "optional": true
+            },
+            {
+              "name": "ExpiryDate",
+              "description": "Optional UTC date time that the secret key will expire at.",
+              "jsontype": "String",
+              "actualtype": "DateTime",
+              "optional": true
+            },
+            {
+              "name": "Deleted",
+              "description": "Flag indicating if the key was deleted by this operation. Either true or null.",
+              "jsontype": "Boolean",
+              "actualtype": "Boolean",
+              "optional": true
+            },
+            {
+              "name": "UserId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "DeveloperId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            }
+          ]
+        },
+        {
           "name": "title_started_task",
           "className": "TitleStartedTaskEventData",
           "classNameSpace": "PlayFab.PlayStreamEvent.Models",

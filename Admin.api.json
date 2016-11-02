@@ -8995,6 +8995,10 @@
     "LimitNotAnUpgradeOption": {
       "id": 1259,
       "name": "LimitNotAnUpgradeOption"
+    },
+    "NoSecretKeyEnabledForCloudScript": {
+      "id": 1260,
+      "name": "NoSecretKeyEnabledForCloudScript"
     }
   },
   "errorList": [
@@ -9247,6 +9251,7 @@
     "InvalidScheduledTaskName",
     "InvalidTaskSchedule",
     "SteamNotEnabledForTitle",
-    "LimitNotAnUpgradeOption"
+    "LimitNotAnUpgradeOption",
+    "NoSecretKeyEnabledForCloudScript"
   ]
 }
