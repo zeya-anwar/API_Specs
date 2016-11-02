@@ -5264,6 +5264,13 @@
           "jsontype": "String",
           "actualtype": "String",
           "optional": true
+        },
+        {
+          "name": "CharacterId",
+          "description": "Optional identifier for the Character that should receive the item. If null, item is added to the player",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
         }
       ]
     },
@@ -8925,7 +8932,8 @@
       "errors": [
         "InvalidParams",
         "CouponCodeNotFound",
-        "CouponAlreadyRedeemed"
+        "CouponAlreadyRedeemed",
+        "CharacterNotFound"
       ]
     },
     {
