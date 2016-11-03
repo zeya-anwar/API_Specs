@@ -7583,7 +7583,7 @@
       "properties": [
         {
           "name": "EventId",
-          "description": "The unique identifier of the event. This can be used to retrieve the event's properties using the GetEvent API. The values of this identifier consist of ASCII characters and are not constrained to any particular format.",
+          "description": "The unique identifier of the event. The values of this identifier consist of ASCII characters and are not constrained to any particular format.",
           "jsontype": "String",
           "actualtype": "String",
           "optional": true
