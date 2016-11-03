@@ -8,15 +8,20 @@
       "className": "ActionsOnPlayersInSegmentTaskSummary",
       "classNameSpace": "PlayFab.Server.Models",
       "assembly": "PlayFab.Server.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "properties": [
         {
           "name": "TaskInstanceId",
           "description": "ID of the task instance.",
           "jsontype": "String",
           "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "TaskIdentifier",
+          "description": "Identifier of the task this instance belongs to.",
+          "jsontype": "Object",
+          "actualtype": "NameIdentifier",
+          "isclass": true,
           "optional": true
         },
         {
@@ -4811,6 +4816,27 @@
       "assembly": "PlayFab.Server.Models",
       "properties": []
     },
+    "NameIdentifier": {
+      "name": "NameIdentifier",
+      "className": "NameIdentifier",
+      "classNameSpace": "PlayFab.Server.Models",
+      "assembly": "PlayFab.Server.Models",
+      "description": "Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is immutable and unique.",
+      "properties": [
+        {
+          "name": "Name",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Id",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        }
+      ]
+    },
     "NotifyMatchmakerPlayerLeftRequest": {
       "name": "NotifyMatchmakerPlayerLeftRequest",
       "className": "NotifyMatchmakerPlayerLeftRequest",
@@ -6258,9 +6284,6 @@
       "className": "TaskInstanceStatus",
       "classNameSpace": "PlayFab.Server.Models",
       "assembly": "PlayFab.Server.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "isenum": true,
       "enumvalues": [
         {
@@ -11478,6 +11501,14 @@
     "NoSecretKeyEnabledForCloudScript": {
       "id": 1260,
       "name": "NoSecretKeyEnabledForCloudScript"
+    },
+    "TaskNotFound": {
+      "id": 1261,
+      "name": "TaskNotFound"
+    },
+    "TaskInstanceNotFound": {
+      "id": 1262,
+      "name": "TaskInstanceNotFound"
     }
   },
   "errorList": [
@@ -11731,6 +11762,8 @@
     "InvalidTaskSchedule",
     "SteamNotEnabledForTitle",
     "LimitNotAnUpgradeOption",
-    "NoSecretKeyEnabledForCloudScript"
+    "NoSecretKeyEnabledForCloudScript",
+    "TaskNotFound",
+    "TaskInstanceNotFound"
   ]
 }

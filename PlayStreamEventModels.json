@@ -2224,6 +2224,34 @@
       "Group": "title",
       "Classes": [
         {
+          "name": "title_aborted_task",
+          "className": "TitleAbortedTaskEventData",
+          "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+          "assembly": "PlayFab.PlayStreamEvent.Models",
+          "description": "This event is triggered when a task instance is aborted.",
+          "properties": [
+            {
+              "name": "TaskInstanceId",
+              "description": "ID of the aborted task instance",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "UserId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "DeveloperId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            }
+          ]
+        },
+        {
           "name": "title_added_cloudscript",
           "className": "TitleAddedCloudScriptEventData",
           "classNameSpace": "PlayFab.PlayStreamEvent.Models",
@@ -2497,6 +2525,64 @@
               "description": "Summary of the task run. Different task types have different summary structure.",
               "jsontype": "Object",
               "actualtype": "object",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "name": "title_created_task",
+          "className": "TitleCreatedTaskEventData",
+          "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+          "assembly": "PlayFab.PlayStreamEvent.Models",
+          "description": "This event is triggered when a task is created.",
+          "properties": [
+            {
+              "name": "ScheduledTask",
+              "description": "Identity of the scheduled task",
+              "jsontype": "Object",
+              "actualtype": "NameIdentifier",
+              "isclass": true,
+              "optional": true
+            },
+            {
+              "name": "UserId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "DeveloperId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "name": "title_deleted_task",
+          "className": "TitleDeletedTaskEventData",
+          "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+          "assembly": "PlayFab.PlayStreamEvent.Models",
+          "description": "This event is triggered when a task is deleted.",
+          "properties": [
+            {
+              "name": "ScheduledTask",
+              "description": "Identity of the scheduled task",
+              "jsontype": "Object",
+              "actualtype": "NameIdentifier",
+              "isclass": true,
+              "optional": true
+            },
+            {
+              "name": "UserId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "DeveloperId",
+              "jsontype": "String",
+              "actualtype": "String",
               "optional": true
             }
           ]
@@ -3054,6 +3140,18 @@
               "jsontype": "String",
               "actualtype": "String",
               "optional": true
+            },
+            {
+              "name": "UserId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "DeveloperId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
             }
           ]
         },
@@ -3119,6 +3217,41 @@
             {
               "name": "Deleted",
               "description": "Was the store deleted.",
+              "jsontype": "Boolean",
+              "actualtype": "Boolean",
+              "optional": false
+            },
+            {
+              "name": "UserId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            },
+            {
+              "name": "DeveloperId",
+              "jsontype": "String",
+              "actualtype": "String",
+              "optional": true
+            }
+          ]
+        },
+        {
+          "name": "title_updated_task",
+          "className": "TitleUpdatedTaskEventData",
+          "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+          "assembly": "PlayFab.PlayStreamEvent.Models",
+          "description": "This event is triggered when a task is updated.",
+          "properties": [
+            {
+              "name": "ScheduledTask",
+              "description": "Identity of the scheduled task",
+              "jsontype": "Object",
+              "actualtype": "NameIdentifier",
+              "isclass": true,
+              "optional": true
+            },
+            {
+              "name": "HasRenamed",
               "jsontype": "Boolean",
               "actualtype": "Boolean",
               "optional": false
@@ -4160,6 +4293,27 @@
       ]
     },
     {
+      "name": "NameIdentifier",
+      "className": "NameIdentifier",
+      "classNameSpace": "PlayFab.PlayStreamEvent.Models",
+      "assembly": "PlayFab.PlayStreamEvent.Models",
+      "description": "Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is immutable and unique.",
+      "properties": [
+        {
+          "name": "Name",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Id",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        }
+      ]
+    },
+    {
       "name": "APISettings",
       "className": "APISettings",
       "classNameSpace": "PlayFab.PlayStreamEvent.Models",
@@ -4228,9 +4382,6 @@
       "className": "TaskInstanceStatus",
       "classNameSpace": "PlayFab.PlayStreamEvent.Models",
       "assembly": "PlayFab.PlayStreamEvent.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "isenum": true,
       "enumvalues": [
         {
@@ -4416,27 +4567,6 @@
       ]
     },
     {
-      "name": "NameIdentifier",
-      "className": "NameIdentifier",
-      "classNameSpace": "PlayFab.PlayStreamEvent.Models",
-      "assembly": "PlayFab.PlayStreamEvent.Models",
-      "description": "Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is immutable and unique.",
-      "properties": [
-        {
-          "name": "Name",
-          "jsontype": "String",
-          "actualtype": "String",
-          "optional": true
-        },
-        {
-          "name": "Id",
-          "jsontype": "String",
-          "actualtype": "String",
-          "optional": true
-        }
-      ]
-    },
-    {
       "name": "StatisticResetIntervalOption",
       "className": "StatisticResetIntervalOption",
       "classNameSpace": "PlayFab.PlayStreamEvent.Models",
@@ -4477,12 +4607,6 @@
           "jsontype": "String",
           "actualtype": "String",
           "optional": true
-        },
-        {
-          "name": "IsEmpty",
-          "jsontype": "Boolean",
-          "actualtype": "Boolean",
-          "optional": false
         }
       ]
     },

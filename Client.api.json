@@ -14998,6 +14998,14 @@
     "NoSecretKeyEnabledForCloudScript": {
       "id": 1260,
       "name": "NoSecretKeyEnabledForCloudScript"
+    },
+    "TaskNotFound": {
+      "id": 1261,
+      "name": "TaskNotFound"
+    },
+    "TaskInstanceNotFound": {
+      "id": 1262,
+      "name": "TaskInstanceNotFound"
     }
   },
   "errorList": [
@@ -15251,6 +15259,8 @@
     "InvalidTaskSchedule",
     "SteamNotEnabledForTitle",
     "LimitNotAnUpgradeOption",
-    "NoSecretKeyEnabledForCloudScript"
+    "NoSecretKeyEnabledForCloudScript",
+    "TaskNotFound",
+    "TaskInstanceNotFound"
   ]
 }

@@ -3,20 +3,62 @@
   "url": "/Admin",
   "description": "APIs for managing title configurations, uploaded Game Server code executables, and user data",
   "datatypes": {
+    "AbortTaskInstanceRequest": {
+      "name": "AbortTaskInstanceRequest",
+      "className": "AbortTaskInstanceRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "TaskInstanceId",
+          "description": "ID of a task instance that is being aborted.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        }
+      ]
+    },
+    "ActionsOnPlayersInSegmentTaskParameter": {
+      "name": "ActionsOnPlayersInSegmentTaskParameter",
+      "className": "ActionsOnPlayersInSegmentTaskParameter",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "SegmentId",
+          "description": "ID of the segment to perform actions on.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        },
+        {
+          "name": "ActionId",
+          "description": "ID of the action to perform on each player in segment.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        }
+      ]
+    },
     "ActionsOnPlayersInSegmentTaskSummary": {
       "name": "ActionsOnPlayersInSegmentTaskSummary",
       "className": "ActionsOnPlayersInSegmentTaskSummary",
       "classNameSpace": "PlayFab.Admin.Models",
       "assembly": "PlayFab.Admin.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "properties": [
         {
           "name": "TaskInstanceId",
           "description": "ID of the task instance.",
           "jsontype": "String",
           "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "TaskIdentifier",
+          "description": "Identifier of the task this instance belongs to.",
+          "jsontype": "Object",
+          "actualtype": "NameIdentifier",
+          "isclass": true,
           "optional": true
         },
         {
@@ -843,6 +885,102 @@
         }
       ]
     },
+    "CloudScriptTaskParameter": {
+      "name": "CloudScriptTaskParameter",
+      "className": "CloudScriptTaskParameter",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "FunctionName",
+          "description": "Name of the CloudScript function to execute.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Argument",
+          "description": "Argument to pass to the CloudScript function.",
+          "jsontype": "Object",
+          "actualtype": "object",
+          "optional": true
+        }
+      ]
+    },
+    "CloudScriptTaskSummary": {
+      "name": "CloudScriptTaskSummary",
+      "className": "CloudScriptTaskSummary",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "TaskInstanceId",
+          "description": "ID of the task instance.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "TaskIdentifier",
+          "description": "Identifier of the task this instance belongs to.",
+          "jsontype": "Object",
+          "actualtype": "NameIdentifier",
+          "isclass": true,
+          "optional": true
+        },
+        {
+          "name": "StartedAt",
+          "description": "UTC timestamp when the task started.",
+          "jsontype": "String",
+          "actualtype": "DateTime",
+          "optional": false
+        },
+        {
+          "name": "CompletedAt",
+          "description": "UTC timestamp when the task completed.",
+          "jsontype": "String",
+          "actualtype": "DateTime",
+          "optional": true
+        },
+        {
+          "name": "Status",
+          "description": "Current status of the task instance.",
+          "jsontype": "String",
+          "actualtype": "TaskInstanceStatus",
+          "isenum": true,
+          "optional": true
+        },
+        {
+          "name": "PercentComplete",
+          "description": "Progress represented as percentage.",
+          "jsontype": "Number",
+          "actualtype": "double",
+          "optional": true
+        },
+        {
+          "name": "EstimatedSecondsRemaining",
+          "description": "Estimated time remaining in seconds.",
+          "jsontype": "Number",
+          "actualtype": "double",
+          "optional": true
+        },
+        {
+          "name": "ScheduledByUserId",
+          "description": "If manually scheduled, ID of user who scheduled the task.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Result",
+          "description": "Result of CloudScript execution",
+          "jsontype": "Object",
+          "actualtype": "ExecuteCloudScriptResult",
+          "isclass": true,
+          "optional": true
+        }
+      ]
+    },
     "CloudScriptVersionStatus": {
       "name": "CloudScriptVersionStatus",
       "className": "CloudScriptVersionStatus",
@@ -901,6 +1039,94 @@
         }
       ]
     },
+    "CreateActionsOnPlayerSegmentTaskRequest": {
+      "name": "CreateActionsOnPlayerSegmentTaskRequest",
+      "className": "CreateActionsOnPlayerSegmentTaskRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Name",
+          "description": "Name of the task. This is a unique identifier for tasks in the title.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        },
+        {
+          "name": "Description",
+          "description": "Description the task",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Schedule",
+          "description": "Cron expression for the run schedule of the task. The expression should be in UTC.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "IsActive",
+          "description": "Whether the schedule is active. Inactive schedule will not trigger task execution.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "Parameter",
+          "description": "Task details related to segment and action",
+          "jsontype": "Object",
+          "actualtype": "ActionsOnPlayersInSegmentTaskParameter",
+          "isclass": true,
+          "optional": false
+        }
+      ]
+    },
+    "CreateCloudScriptTaskRequest": {
+      "name": "CreateCloudScriptTaskRequest",
+      "className": "CreateCloudScriptTaskRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Name",
+          "description": "Name of the task. This is a unique identifier for tasks in the title.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        },
+        {
+          "name": "Description",
+          "description": "Description the task",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Schedule",
+          "description": "Cron expression for the run schedule of the task. The expression should be in UTC.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "IsActive",
+          "description": "Whether the schedule is active. Inactive schedule will not trigger task execution.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "Parameter",
+          "description": "Task details related to CloudScript",
+          "jsontype": "Object",
+          "actualtype": "CloudScriptTaskParameter",
+          "isclass": true,
+          "optional": false
+        }
+      ]
+    },
     "CreatePlayerStatisticDefinitionRequest": {
       "name": "CreatePlayerStatisticDefinitionRequest",
       "className": "CreatePlayerStatisticDefinitionRequest",
@@ -944,6 +1170,21 @@
           "jsontype": "Object",
           "actualtype": "PlayerStatisticDefinition",
           "isclass": true,
+          "optional": true
+        }
+      ]
+    },
+    "CreateTaskResult": {
+      "name": "CreateTaskResult",
+      "className": "CreateTaskResult",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "TaskId",
+          "description": "ID of the task",
+          "jsontype": "String",
+          "actualtype": "String",
           "optional": true
         }
       ]
@@ -1487,6 +1728,22 @@
       "assembly": "PlayFab.Admin.Models",
       "properties": []
     },
+    "DeleteTaskRequest": {
+      "name": "DeleteTaskRequest",
+      "className": "DeleteTaskRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Identifier",
+          "description": "Specify either the task ID or the name of task to be deleted.",
+          "jsontype": "Object",
+          "actualtype": "NameIdentifier",
+          "isclass": true,
+          "optional": true
+        }
+      ]
+    },
     "DeleteUsersRequest": {
       "name": "DeleteUsersRequest",
       "className": "DeleteUsersRequest",
@@ -1529,6 +1786,92 @@
       "enumvalues": [
         {
           "name": "Allow"
+        }
+      ]
+    },
+    "EmptyResult": {
+      "name": "EmptyResult",
+      "className": "EmptyResult",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": []
+    },
+    "ExecuteCloudScriptResult": {
+      "name": "ExecuteCloudScriptResult",
+      "className": "ExecuteCloudScriptResult",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "FunctionName",
+          "description": "The name of the function that executed",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Revision",
+          "description": "The revision of the CloudScript that executed",
+          "jsontype": "Number",
+          "actualtype": "int32",
+          "optional": false
+        },
+        {
+          "name": "FunctionResult",
+          "description": "The object returned from the CloudScript function, if any",
+          "jsontype": "Object",
+          "actualtype": "object",
+          "optional": true
+        },
+        {
+          "name": "Logs",
+          "description": "Entries logged during the function execution. These include both entries logged in the function code using log.info() and log.error() and error entries for API and HTTP request failures.",
+          "collection": "array",
+          "jsontype": "Object",
+          "actualtype": "LogStatement",
+          "isclass": true,
+          "optional": true
+        },
+        {
+          "name": "ExecutionTimeSeconds",
+          "jsontype": "Number",
+          "actualtype": "double",
+          "optional": false
+        },
+        {
+          "name": "ProcessorTimeSeconds",
+          "description": "Processor time consumed while executing the function. This does not include time spent waiting on API calls or HTTP requests.",
+          "jsontype": "Number",
+          "actualtype": "double",
+          "optional": false
+        },
+        {
+          "name": "MemoryConsumedBytes",
+          "jsontype": "Number",
+          "actualtype": "uint32",
+          "optional": false
+        },
+        {
+          "name": "APIRequestsIssued",
+          "description": "Number of PlayFab API requests issued by the CloudScript function",
+          "jsontype": "Number",
+          "actualtype": "int32",
+          "optional": false
+        },
+        {
+          "name": "HttpRequestsIssued",
+          "description": "Number of external HTTP requests issued by the CloudScript function",
+          "jsontype": "Number",
+          "actualtype": "int32",
+          "optional": false
+        },
+        {
+          "name": "Error",
+          "description": "Information about the error, if any, that occured during execution",
+          "jsontype": "Object",
+          "actualtype": "ScriptExecutionError",
+          "isclass": true,
+          "optional": true
         }
       ]
     },
@@ -1610,6 +1953,30 @@
           "description": "Action Group ID",
           "jsontype": "String",
           "actualtype": "String",
+          "optional": true
+        }
+      ]
+    },
+    "GetActionsOnPlayersInSegmentTaskInstanceResult": {
+      "name": "GetActionsOnPlayersInSegmentTaskInstanceResult",
+      "className": "GetActionsOnPlayersInSegmentTaskInstanceResult",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Summary",
+          "description": "Status summary of the actions-on-players-in-segment task instance",
+          "jsontype": "Object",
+          "actualtype": "ActionsOnPlayersInSegmentTaskSummary",
+          "isclass": true,
+          "optional": true
+        },
+        {
+          "name": "Parameter",
+          "description": "Parameter of this task instance",
+          "jsontype": "Object",
+          "actualtype": "ActionsOnPlayersInSegmentTaskParameter",
+          "isclass": true,
           "optional": true
         }
       ]
@@ -1796,6 +2163,30 @@
           "jsontype": "Boolean",
           "actualtype": "Boolean",
           "optional": false
+        }
+      ]
+    },
+    "GetCloudScriptTaskInstanceResult": {
+      "name": "GetCloudScriptTaskInstanceResult",
+      "className": "GetCloudScriptTaskInstanceResult",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Summary",
+          "description": "Status summary of the CloudScript task instance",
+          "jsontype": "Object",
+          "actualtype": "CloudScriptTaskSummary",
+          "isclass": true,
+          "optional": true
+        },
+        {
+          "name": "Parameter",
+          "description": "Parameter of this task instance",
+          "jsontype": "Object",
+          "actualtype": "CloudScriptTaskParameter",
+          "isclass": true,
+          "optional": true
         }
       ]
     },
@@ -2615,6 +3006,109 @@
         }
       ]
     },
+    "GetTaskInstanceRequest": {
+      "name": "GetTaskInstanceRequest",
+      "className": "GetTaskInstanceRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "TaskInstanceId",
+          "description": "ID of the requested task instance.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        }
+      ]
+    },
+    "GetTaskInstancesRequest": {
+      "name": "GetTaskInstancesRequest",
+      "className": "GetTaskInstancesRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "TaskIdentifier",
+          "description": "Name or ID of the task whose instances are being queried. If not specified, return all task instances that satisfy conditions set by other filters.",
+          "jsontype": "Object",
+          "actualtype": "NameIdentifier",
+          "isclass": true,
+          "optional": true
+        },
+        {
+          "name": "StatusFilter",
+          "description": "Optional filter for task instances that are of a specific status.",
+          "jsontype": "String",
+          "actualtype": "TaskInstanceStatus",
+          "isenum": true,
+          "optional": true
+        },
+        {
+          "name": "StartedAtRangeFrom",
+          "description": "Optional range-from filter for task instances' StartedAt timestamp.",
+          "jsontype": "String",
+          "actualtype": "DateTime",
+          "optional": true
+        },
+        {
+          "name": "StartedAtRangeTo",
+          "description": "Optional range-to filter for task instances' StartedAt timestamp.",
+          "jsontype": "String",
+          "actualtype": "DateTime",
+          "optional": true
+        }
+      ]
+    },
+    "GetTaskInstancesResult": {
+      "name": "GetTaskInstancesResult",
+      "className": "GetTaskInstancesResult",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Summaries",
+          "description": "Basic status summaries of the queried task instances. Empty If no task instances meets the filter criteria. To get detailed status summary, use Get*TaskInstance API according to task type (e.g. GetActionsOnPlayersInSegmentTaskInstance).",
+          "collection": "array",
+          "jsontype": "Object",
+          "actualtype": "TaskInstanceBasicSummary",
+          "isclass": true,
+          "optional": true
+        }
+      ]
+    },
+    "GetTasksRequest": {
+      "name": "GetTasksRequest",
+      "className": "GetTasksRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Identifier",
+          "description": "Provide either the task ID or the task name to get a specific task. If not specified, return all defined tasks.",
+          "jsontype": "Object",
+          "actualtype": "NameIdentifier",
+          "isclass": true,
+          "optional": true
+        }
+      ]
+    },
+    "GetTasksResult": {
+      "name": "GetTasksResult",
+      "className": "GetTasksResult",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Tasks",
+          "description": "Result tasks. Empty if there is no task found.",
+          "collection": "array",
+          "jsontype": "Object",
+          "actualtype": "ScheduledTask",
+          "isclass": true,
+          "optional": true
+        }
+      ]
+    },
     "GetTitleDataRequest": {
       "name": "GetTitleDataRequest",
       "className": "GetTitleDataRequest",
@@ -3317,6 +3811,34 @@
         }
       ]
     },
+    "LogStatement": {
+      "name": "LogStatement",
+      "className": "LogStatement",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Level",
+          "description": "'Debug', 'Info', or 'Error'",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Message",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Data",
+          "description": "Optional object accompanying the message as contextual information",
+          "jsontype": "Object",
+          "actualtype": "object",
+          "optional": true
+        }
+      ]
+    },
     "LookupUserAccountInfoRequest": {
       "name": "LookupUserAccountInfoRequest",
       "className": "LookupUserAccountInfoRequest",
@@ -3580,6 +4102,27 @@
           "jsontype": "Number",
           "actualtype": "int32",
           "optional": false
+        }
+      ]
+    },
+    "NameIdentifier": {
+      "name": "NameIdentifier",
+      "className": "NameIdentifier",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "description": "Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is immutable and unique.",
+      "properties": [
+        {
+          "name": "Name",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Id",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
         }
       ]
     },
@@ -4508,6 +5051,153 @@
         }
       ]
     },
+    "RunTaskRequest": {
+      "name": "RunTaskRequest",
+      "className": "RunTaskRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Identifier",
+          "description": "Provide either the task ID or the task name to run a task.",
+          "jsontype": "Object",
+          "actualtype": "NameIdentifier",
+          "isclass": true,
+          "optional": true
+        }
+      ]
+    },
+    "RunTaskResult": {
+      "name": "RunTaskResult",
+      "className": "RunTaskResult",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "TaskInstanceId",
+          "description": "ID of the task instance that is started. This can be used in Get*TaskInstance (e.g. GetCloudScriptTaskInstance) API call to retrieve status for the task instance.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        }
+      ]
+    },
+    "ScheduledTask": {
+      "name": "ScheduledTask",
+      "className": "ScheduledTask",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "TaskId",
+          "description": "ID of the task",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Name",
+          "description": "Name of the task. This is a unique identifier for tasks in the title.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Description",
+          "description": "Description the task",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Schedule",
+          "description": "Cron expression for the run schedule of the task. The expression should be in UTC.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "IsActive",
+          "description": "Whether the schedule is active. Inactive schedule will not trigger task execution.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "Type",
+          "description": "Task type.",
+          "jsontype": "String",
+          "actualtype": "ScheduledTaskType",
+          "isenum": true,
+          "optional": true
+        },
+        {
+          "name": "Parameter",
+          "description": "Task parameter. Different types of task have different parameter structure. See each task type's create API documentation for the details.",
+          "jsontype": "Object",
+          "actualtype": "object",
+          "optional": true
+        },
+        {
+          "name": "LastRunTime",
+          "description": "UTC time of last run",
+          "jsontype": "String",
+          "actualtype": "DateTime",
+          "optional": true
+        },
+        {
+          "name": "NextRunTime",
+          "description": "UTC time of next run",
+          "jsontype": "String",
+          "actualtype": "DateTime",
+          "optional": true
+        }
+      ]
+    },
+    "ScheduledTaskType": {
+      "name": "ScheduledTaskType",
+      "className": "ScheduledTaskType",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "isenum": true,
+      "enumvalues": [
+        {
+          "name": "CloudScript"
+        },
+        {
+          "name": "ActionsOnPlayerSegment"
+        }
+      ]
+    },
+    "ScriptExecutionError": {
+      "name": "ScriptExecutionError",
+      "className": "ScriptExecutionError",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Error",
+          "description": "Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded, CloudScriptAPIRequestCountExceeded, CloudScriptAPIRequestError, or CloudScriptHTTPRequestError",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Message",
+          "description": "Details about the error",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "StackTrace",
+          "description": "Point during the execution of the script at which the error occurred, if any",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        }
+      ]
+    },
     "SendAccountRecoveryEmailRequest": {
       "name": "SendAccountRecoveryEmailRequest",
       "className": "SendAccountRecoveryEmailRequest",
@@ -4943,14 +5633,85 @@
         }
       ]
     },
+    "TaskInstanceBasicSummary": {
+      "name": "TaskInstanceBasicSummary",
+      "className": "TaskInstanceBasicSummary",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "TaskInstanceId",
+          "description": "ID of the task instance.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "TaskIdentifier",
+          "description": "Identifier of the task this instance belongs to.",
+          "jsontype": "Object",
+          "actualtype": "NameIdentifier",
+          "isclass": true,
+          "optional": true
+        },
+        {
+          "name": "StartedAt",
+          "description": "UTC timestamp when the task started.",
+          "jsontype": "String",
+          "actualtype": "DateTime",
+          "optional": false
+        },
+        {
+          "name": "CompletedAt",
+          "description": "UTC timestamp when the task completed.",
+          "jsontype": "String",
+          "actualtype": "DateTime",
+          "optional": true
+        },
+        {
+          "name": "Status",
+          "description": "Current status of the task instance.",
+          "jsontype": "String",
+          "actualtype": "TaskInstanceStatus",
+          "isenum": true,
+          "optional": true
+        },
+        {
+          "name": "PercentComplete",
+          "description": "Progress represented as percentage.",
+          "jsontype": "Number",
+          "actualtype": "double",
+          "optional": true
+        },
+        {
+          "name": "EstimatedSecondsRemaining",
+          "description": "Estimated time remaining in seconds.",
+          "jsontype": "Number",
+          "actualtype": "double",
+          "optional": true
+        },
+        {
+          "name": "ScheduledByUserId",
+          "description": "If manually scheduled, ID of user who scheduled the task.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Type",
+          "description": "Type of the task.",
+          "jsontype": "String",
+          "actualtype": "ScheduledTaskType",
+          "isenum": true,
+          "optional": true
+        }
+      ]
+    },
     "TaskInstanceStatus": {
       "name": "TaskInstanceStatus",
       "className": "TaskInstanceStatus",
       "classNameSpace": "PlayFab.Admin.Models",
       "assembly": "PlayFab.Admin.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "isenum": true,
       "enumvalues": [
         {
@@ -5378,6 +6139,65 @@
       "classNameSpace": "PlayFab.Admin.Models",
       "assembly": "PlayFab.Admin.Models",
       "properties": []
+    },
+    "UpdateTaskRequest": {
+      "name": "UpdateTaskRequest",
+      "className": "UpdateTaskRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "properties": [
+        {
+          "name": "Identifier",
+          "description": "Specify either the task ID or the name of the task to be updated.",
+          "jsontype": "Object",
+          "actualtype": "NameIdentifier",
+          "isclass": true,
+          "optional": true
+        },
+        {
+          "name": "Name",
+          "description": "Name of the task. This is a unique identifier for tasks in the title.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        },
+        {
+          "name": "Description",
+          "description": "Description the task",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Schedule",
+          "description": "Cron expression for the run schedule of the task. The expression should be in UTC.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "IsActive",
+          "description": "Whether the schedule is active. Inactive schedule will not trigger task execution.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        },
+        {
+          "name": "Type",
+          "description": "Task type.",
+          "jsontype": "String",
+          "actualtype": "ScheduledTaskType",
+          "isenum": true,
+          "optional": false
+        },
+        {
+          "name": "Parameter",
+          "description": "Parameter object specific to the task type. See each task type's create API documentation for details.",
+          "jsontype": "Object",
+          "actualtype": "object",
+          "optional": true
+        }
+      ]
     },
     "UpdateUserDataRequest": {
       "name": "UpdateUserDataRequest",
@@ -8065,6 +8885,259 @@
         "SegmentNotFound",
         "ActionGroupNotFound"
       ]
+    },
+    {
+      "name": "AbortTaskInstance",
+      "summary": "Abort an ongoing task instance.",
+      "requestDetails": "If the task instance has already completed, there will be no-op.",
+      "subgroup": "ScheduledTask",
+      "titleTiers": null,
+      "url": "/Admin/AbortTaskInstance",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "AbortTaskInstanceRequest",
+      "requestExample": "{\r\n  \"TaskInstanceId\": \"E52531B47B1761C7-4\"\r\n}",
+      "result": "EmptyResult",
+      "resultExample": "",
+      "seeAlso": [
+        "Admin/GetTaskInstances",
+        "Admin/RunTask",
+        "Admin/GetCloudScriptTaskInstance",
+        "Admin/GetActionsOnPlayersInSegmentTaskInstance"
+      ],
+      "errors": [
+        "InvalidParams",
+        "TaskInstanceNotFound"
+      ]
+    },
+    {
+      "name": "CreateActionsOnPlayersInSegmentTask",
+      "summary": "Create an ActionsOnPlayersInSegment task, which iterates through all players in a segment to execute action.",
+      "requestDetails": "Task name is unique within a title. Using a task name that's already taken will cause a name conflict error. Too many create-task requests within a short time will cause a create conflict error.",
+      "subgroup": "ScheduledTask",
+      "titleTiers": null,
+      "url": "/Admin/CreateActionsOnPlayersInSegmentTask",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "CreateActionsOnPlayerSegmentTaskRequest",
+      "requestExample": "{\r\n  \"Name\": \"PushNotificationVIP_Halloween\",\r\n  \"Description\": \"Send push notification to VIP players about Halloween event\",\r\n  \"IsActive\": false,\r\n  \"Parameter\": {\r\n    \"SegmentId\": \"274828AF93F13472\",\r\n    \"ActionId\": \"898665F02BF5B41E\"\r\n  }\r\n}",
+      "result": "CreateTaskResult",
+      "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"TaskId\": \"644FA3A39C9714BC\"\r\n  }\r\n}",
+      "seeAlso": [
+        "Admin/GetTasks",
+        "Admin/RunTask",
+        "Admin/UpdateTask",
+        "Admin/DeleteTask",
+        "Admin/CreateCloudScriptTask"
+      ],
+      "errors": [
+        "InvalidParams",
+        "InvalidScheduledTaskName",
+        "InvalidTaskSchedule",
+        "ScheduledTaskCreateConflict",
+        "ScheduledTaskNameConflict"
+      ]
+    },
+    {
+      "name": "CreateCloudScriptTask",
+      "summary": "Create a CloudScript task, which can run a CloudScript on a schedule.",
+      "requestDetails": "Task name is unique within a title. Using a task name that's already taken will cause a name conflict error. Too many create-task requests within a short time will cause a create conflict error.",
+      "subgroup": "ScheduledTask",
+      "titleTiers": null,
+      "url": "/Admin/CreateCloudScriptTask",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "CreateCloudScriptTaskRequest",
+      "requestExample": "{\r\n  \"Name\": \"EnableWeekdayHappyHour\",\r\n  \"Description\": \"Turn on special pricing for weekday happy hour.\",\r\n  \"Schedule\": \"0 17 * * 1-5\",\r\n  \"IsActive\": false,\r\n  \"Parameter\": {\r\n    \"FunctionName\": \"applyStorePreset\",\r\n    \"Argument\": {\r\n      \"preset\": \"WeekdayHappyHour\"\r\n    }\r\n  }\r\n}",
+      "result": "CreateTaskResult",
+      "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"TaskId\": \"644FA3A39C9714BC\"\r\n  }\r\n}",
+      "seeAlso": [
+        "Admin/GetTasks",
+        "Admin/RunTask",
+        "Admin/UpdateTask",
+        "Admin/DeleteTask",
+        "Admin/CreateActionsOnPlayersInSegmentTask"
+      ],
+      "errors": [
+        "InvalidParams",
+        "InvalidScheduledTaskName",
+        "InvalidTaskSchedule",
+        "ScheduledTaskCreateConflict",
+        "ScheduledTaskNameConflict"
+      ]
+    },
+    {
+      "name": "DeleteTask",
+      "summary": "Delete a task.",
+      "requestDetails": "After a task is deleted, for tracking purposes, the task instances belonging to this task will still remain. They will become orphaned and does not belongs to any task. Executions of any in-progress task instances will continue. If the task specified does not exist, the deletion is considered a success.",
+      "subgroup": "ScheduledTask",
+      "titleTiers": null,
+      "url": "/Admin/DeleteTask",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "DeleteTaskRequest",
+      "requestExample": "{\r\n  \"Identifier\": {\r\n    \"Id\": \"E1772FD927D8539D\"\r\n  }\r\n}",
+      "result": "EmptyResult",
+      "resultExample": "",
+      "seeAlso": [
+        "Admin/GetTasks",
+        "Admin/RunTask",
+        "Admin/UpdateTask",
+        "Admin/CreateCloudScriptTask",
+        "Admin/CreateActionsOnPlayersInSegmentTask"
+      ],
+      "errors": [
+        "InvalidParams"
+      ]
+    },
+    {
+      "name": "GetActionsOnPlayersInSegmentTaskInstance",
+      "summary": "Get information about a ActionsOnPlayersInSegment task instance.",
+      "requestDetails": "The result includes detail information that's specific to an ActionsOnPlayersInSegment task. To get a list of task instances with generic basic information, use GetTaskInstances.",
+      "subgroup": "ScheduledTask",
+      "titleTiers": null,
+      "url": "/Admin/GetActionsOnPlayersInSegmentTaskInstance",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "GetTaskInstanceRequest",
+      "requestExample": "{\r\n  \"TaskInstanceId\": \"E52531B47B1761C7-4\"\r\n}",
+      "result": "GetActionsOnPlayersInSegmentTaskInstanceResult",
+      "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"Summary\": {\r\n      \"TaskInstanceId\": \"B67ACA247F49EF47-8\",\r\n      \"StartedAt\": \"2016-08-23T12:33:14Z\",\r\n      \"Status\": \"InProgress\",\r\n      \"PercentComplete\": 67.0,\r\n      \"EstimatedSecondsRemaining\": 893.0,\r\n      \"TotalPlayersInSegment\": 325901,\r\n      \"TotalPlayersProcessed\": 218354\r\n    },\r\n    \"Parameter\": {\r\n      \"SegmentId\": \"502FD30E8C78F826\",\r\n      \"ActionId\": \"FE29AED5399BED1F\"\r\n    }\r\n  }\r\n}",
+      "seeAlso": [
+        "Admin/GetTaskInstances",
+        "Admin/RunTask",
+        "Admin/AbortTaskInstance",
+        "Admin/GetCloudScriptTaskInstance"
+      ],
+      "errors": [
+        "InvalidParams",
+        "TaskInstanceNotFound"
+      ]
+    },
+    {
+      "name": "GetCloudScriptTaskInstance",
+      "summary": "Get detail information about a CloudScript task instance.",
+      "requestDetails": "The result includes detail information that's specific to a CloudScript tasks. To get a list of task instances with generic basic information, use GetTaskInstances.",
+      "subgroup": "ScheduledTask",
+      "titleTiers": null,
+      "url": "/Admin/GetCloudScriptTaskInstance",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "GetTaskInstanceRequest",
+      "requestExample": "{\r\n  \"TaskInstanceId\": \"E52531B47B1761C7-4\"\r\n}",
+      "result": "GetCloudScriptTaskInstanceResult",
+      "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"Summary\": {\r\n      \"TaskInstanceId\": \"B67ACA247F49EF47-8\",\r\n      \"TaskIdentifier\": {\r\n        \"Name\": \"EnableDailyHappyHour\",\r\n        \"Id\": \"B67ACA247F49EF47\"\r\n      },\r\n      \"StartedAt\": \"2016-08-23T12:33:14Z\",\r\n      \"CompletedAt\": \"2016-08-23T12:33:19Z\",\r\n      \"Status\": \"Succeeded\",\r\n      \"Result\": {\r\n        \"Revision\": 3,\r\n        \"FunctionResult\": {\r\n          \"newScore\": 25,\r\n          \"isWinner\": false\r\n        },\r\n        \"Logs\": [\r\n          {\r\n            \"Level\": \"Info\",\r\n            \"Message\": \"Something normal happened\",\r\n            \"Data\": {\r\n              \"secondsAfterStart\": 75\r\n            }\r\n          },\r\n          {\r\n            \"Level\": \"Error\",\r\n            \"Message\": \"Something unexpected happened\"\r\n          }\r\n        ],\r\n        \"ExecutionTimeSeconds\": 0.03670790046453476,\r\n        \"ProcessorTimeSeconds\": 0.0,\r\n        \"MemoryConsumedBytes\": 38904,\r\n        \"APIRequestsIssued\": 2,\r\n        \"HttpRequestsIssued\": 0\r\n      }\r\n    },\r\n    \"Parameter\": {\r\n      \"FunctionName\": \"applyStorePreset\",\r\n      \"Argument\": {\r\n        \"presetName\": \"dailyHappyHour\"\r\n      }\r\n    }\r\n  }\r\n}",
+      "seeAlso": [
+        "Admin/GetTaskInstances",
+        "Admin/RunTask",
+        "Admin/AbortTaskInstance",
+        "Admin/GetActionsOnPlayersInSegmentTaskInstance"
+      ],
+      "errors": [
+        "InvalidParams",
+        "TaskInstanceNotFound"
+      ]
+    },
+    {
+      "name": "GetTaskInstances",
+      "summary": "Query for task instances by task, status, or time range.",
+      "requestDetails": "Only the most recent 100 task instances are returned, ordered by start time descending. The results are generic basic information for task instances. To get detail information specific to each task type, use Get*TaskInstance based on its corresponding task type.",
+      "subgroup": "ScheduledTask",
+      "titleTiers": null,
+      "url": "/Admin/GetTaskInstances",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "GetTaskInstancesRequest",
+      "requestExample": "{\r\n  \"StatusFilter\": 3,\r\n  \"StartedAtRangeFrom\": \"2016-08-23T11:00:00Z\"\r\n}",
+      "result": "GetTaskInstancesResult",
+      "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"Summaries\": [\r\n      {\r\n        \"TaskInstanceId\": \"12526BFE6B097261\",\r\n        \"TaskIdentifier\": {\r\n          \"Name\": \"EnableDailyHappyHour\",\r\n          \"Id\": \"6DBF342F05464412\"\r\n        },\r\n        \"StartedAt\": \"2016-08-23T12:33:14Z\",\r\n        \"CompletedAt\": \"2016-08-23T12:33:19Z\",\r\n        \"Status\": \"Succeeded\",\r\n        \"ScheduledByUserId\": \"8E615CDCDD836C31\",\r\n        \"Type\": \"CloudScript\"\r\n      }\r\n    ]\r\n  }\r\n}",
+      "seeAlso": [
+        "Admin/RunTask",
+        "Admin/AbortTaskInstance",
+        "Admin/GetCloudScriptTaskInstance",
+        "Admin/GetActionsOnPlayersInSegmentTaskInstance"
+      ],
+      "errors": [
+        "InvalidParams",
+        "TaskNotFound"
+      ]
+    },
+    {
+      "name": "GetTasks",
+      "summary": "Get definition information on a specified task or all tasks within a title.",
+      "subgroup": "ScheduledTask",
+      "titleTiers": null,
+      "url": "/Admin/GetTasks",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "GetTasksRequest",
+      "requestExample": "{\r\n  \"Identifier\": {\r\n    \"Name\": \"EnableDailyHappyHour\"\r\n  }\r\n}",
+      "result": "GetTasksResult",
+      "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"Tasks\": [\r\n      {\r\n        \"TaskId\": \"9742767689DA713\",\r\n        \"Name\": \"EnableDailyHappyHour\",\r\n        \"Description\": \"Turn on special pricing for weekday happy-hour\",\r\n        \"Schedule\": \"0 17 * * 1-5\",\r\n        \"IsActive\": false,\r\n        \"Type\": \"CloudScript\",\r\n        \"Parameter\": {\r\n          \"FunctionName\": \"applyStorePreset\",\r\n          \"Argument\": {\r\n            \"preset\": \"WeekdayHappyHour\"\r\n          }\r\n        },\r\n        \"LastRunTime\": \"2016-10-19T05:43:19Z\",\r\n        \"NextRunTime\": \"2016-10-19T17:00:00Z\"\r\n      }\r\n    ]\r\n  }\r\n}",
+      "seeAlso": [
+        "Admin/GetTasks",
+        "Admin/RunTask",
+        "Admin/UpdateTask",
+        "Admin/DeleteTask",
+        "Admin/CreateCloudScriptTask"
+      ],
+      "errors": [
+        "InvalidParams"
+      ]
+    },
+    {
+      "name": "RunTask",
+      "summary": "Run a task immediately regardless of its schedule.",
+      "requestDetails": "The returned task instance ID can be used to query for task execution status.",
+      "subgroup": "ScheduledTask",
+      "titleTiers": null,
+      "url": "/Admin/RunTask",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "RunTaskRequest",
+      "requestExample": "{\r\n  \"Identifier\": {\r\n    \"Id\": \"E1772FD927D8539D\"\r\n  }\r\n}",
+      "result": "RunTaskResult",
+      "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"TaskInstanceId\": \"E52531B47B1761C7-4\"\r\n  }\r\n}",
+      "seeAlso": [
+        "Admin/GetTasks",
+        "Admin/UpdateTask",
+        "Admin/DeleteTask",
+        "Admin/CreateCloudScriptTask",
+        "Admin/CreateActionsOnPlayersInSegmentTask"
+      ],
+      "errors": [
+        "InvalidParams",
+        "TaskNotFound"
+      ]
+    },
+    {
+      "name": "UpdateTask",
+      "summary": "Update an existing task.",
+      "requestDetails": "If the task name in the update request is new, a task rename operation will be executed before updating other fields of the task. WARNING: Renaming of a task may break logics where the task name is used as an identifier.",
+      "subgroup": "ScheduledTask",
+      "titleTiers": null,
+      "url": "/Admin/UpdateTask",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "UpdateTaskRequest",
+      "requestExample": "{\r\n  \"Identifier\": {\r\n    \"Name\": \"PushEventNotificationVIP_Halloween\"\r\n  },\r\n  \"Name\": \"PushEventNotificationVIP_Thanksgiving\",\r\n  \"Description\": \"Send push notification to VIP about Thanksgiving event\",\r\n  \"IsActive\": false,\r\n  \"Type\": \"ActionsOnPlayerSegment\",\r\n  \"Parameter\": {\r\n    \"SegmentId\": \"E2B0F9C19B02D796\",\r\n    \"ActionId\": \"DEC740F924D304C6\"\r\n  }\r\n}",
+      "result": "EmptyResult",
+      "resultExample": "",
+      "seeAlso": [
+        "Admin/GetTasks",
+        "Admin/RunTask",
+        "Admin/DeleteTask",
+        "Admin/CreateCloudScriptTask",
+        "Admin/CreateActionsOnPlayersInSegmentTask"
+      ],
+      "errors": [
+        "InvalidParams",
+        "TaskNotFound",
+        "InvalidScheduledTaskName",
+        "InvalidTaskSchedule",
+        "ScheduledTaskCreateConflict",
+        "ScheduledTaskNameConflict"
+      ]
     }
   ],
   "subgroups": [
@@ -8213,6 +9286,21 @@
         "GetPlayerTags",
         "RemovePlayerTag",
         "RunActionsOnPlayersInSegment"
+      ]
+    },
+    {
+      "name": "ScheduledTask",
+      "methods": [
+        "AbortTaskInstance",
+        "CreateActionsOnPlayersInSegmentTask",
+        "CreateCloudScriptTask",
+        "DeleteTask",
+        "GetActionsOnPlayersInSegmentTaskInstance",
+        "GetCloudScriptTaskInstance",
+        "GetTaskInstances",
+        "GetTasks",
+        "RunTask",
+        "UpdateTask"
       ]
     }
   ],
@@ -9220,6 +10308,14 @@
     "NoSecretKeyEnabledForCloudScript": {
       "id": 1260,
       "name": "NoSecretKeyEnabledForCloudScript"
+    },
+    "TaskNotFound": {
+      "id": 1261,
+      "name": "TaskNotFound"
+    },
+    "TaskInstanceNotFound": {
+      "id": 1262,
+      "name": "TaskInstanceNotFound"
     }
   },
   "errorList": [
@@ -9473,6 +10569,8 @@
     "InvalidTaskSchedule",
     "SteamNotEnabledForTitle",
     "LimitNotAnUpgradeOption",
-    "NoSecretKeyEnabledForCloudScript"
+    "NoSecretKeyEnabledForCloudScript",
+    "TaskNotFound",
+    "TaskInstanceNotFound"
   ]
 }
