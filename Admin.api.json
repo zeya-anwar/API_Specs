@@ -1517,6 +1517,21 @@
       "assembly": "PlayFab.Admin.Models",
       "properties": []
     },
+    "EffectType": {
+      "name": "EffectType",
+      "className": "EffectType",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "AnyInclusiveFlags": [
+        "Beta"
+      ],
+      "isenum": true,
+      "enumvalues": [
+        {
+          "name": "Allow"
+        }
+      ]
+    },
     "GameBuildStatus": {
       "name": "GameBuildStatus",
       "className": "GameBuildStatus",
@@ -2267,6 +2282,51 @@
           "jsontype": "String",
           "actualtype": "String",
           "optional": false
+        }
+      ]
+    },
+    "GetPolicyRequest": {
+      "name": "GetPolicyRequest",
+      "className": "GetPolicyRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "AnyInclusiveFlags": [
+        "Beta"
+      ],
+      "properties": [
+        {
+          "name": "PolicyName",
+          "description": "The name of the policy to read. Only supported name is 'ApiPolicy'.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        }
+      ]
+    },
+    "GetPolicyResponse": {
+      "name": "GetPolicyResponse",
+      "className": "GetPolicyResponse",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "AnyInclusiveFlags": [
+        "Beta"
+      ],
+      "properties": [
+        {
+          "name": "PolicyName",
+          "description": "The name of the policy read.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Statements",
+          "description": "The statements in the requested policy.",
+          "collection": "array",
+          "jsontype": "Object",
+          "actualtype": "PermissionStatement",
+          "isclass": true,
+          "optional": true
         }
       ]
     },
@@ -3520,6 +3580,53 @@
           "jsontype": "Number",
           "actualtype": "int32",
           "optional": false
+        }
+      ]
+    },
+    "PermissionStatement": {
+      "name": "PermissionStatement",
+      "className": "PermissionStatement",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "AnyInclusiveFlags": [
+        "Beta"
+      ],
+      "properties": [
+        {
+          "name": "Resource",
+          "description": "The resource this statements effects. The only supported resources look like '<mytitleid>.playfabpai.com/*' for all apis, or '<mytitleid>.playfabpai.com/Client/ConfirmPurchase' for specific apis.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        },
+        {
+          "name": "Action",
+          "description": "The action this statement effects. The only supported action is 'Execute'.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        },
+        {
+          "name": "Effect",
+          "description": "The effect this statement will have. The only supported effect is 'Allow'.",
+          "jsontype": "String",
+          "actualtype": "EffectType",
+          "isenum": true,
+          "optional": false
+        },
+        {
+          "name": "Principal",
+          "description": "The principal this statement will effect. The only supported principal is '*'.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        },
+        {
+          "name": "Comment",
+          "description": "A comment about the statement. Intended solely for bookeeping and debugging.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
         }
       ]
     },
@@ -5134,6 +5241,67 @@
         }
       ]
     },
+    "UpdatePolicyRequest": {
+      "name": "UpdatePolicyRequest",
+      "className": "UpdatePolicyRequest",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "AnyInclusiveFlags": [
+        "Beta"
+      ],
+      "properties": [
+        {
+          "name": "PolicyName",
+          "description": "The name of the policy being updated. Only supported name is 'ApiPolicy'",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": false
+        },
+        {
+          "name": "Statements",
+          "description": "The new statements to include in the policy.",
+          "collection": "array",
+          "jsontype": "Object",
+          "actualtype": "PermissionStatement",
+          "isclass": true,
+          "optional": false
+        },
+        {
+          "name": "OverwritePolicy",
+          "description": "Whether to overwrite or append to the existing policy.",
+          "jsontype": "Boolean",
+          "actualtype": "Boolean",
+          "optional": false
+        }
+      ]
+    },
+    "UpdatePolicyResponse": {
+      "name": "UpdatePolicyResponse",
+      "className": "UpdatePolicyResponse",
+      "classNameSpace": "PlayFab.Admin.Models",
+      "assembly": "PlayFab.Admin.Models",
+      "AnyInclusiveFlags": [
+        "Beta"
+      ],
+      "properties": [
+        {
+          "name": "PolicyName",
+          "description": "The name of the policy that was updated.",
+          "jsontype": "String",
+          "actualtype": "String",
+          "optional": true
+        },
+        {
+          "name": "Statements",
+          "description": "The statements included in the new version of the policy.",
+          "collection": "array",
+          "jsontype": "Object",
+          "actualtype": "PermissionStatement",
+          "isclass": true,
+          "optional": true
+        }
+      ]
+    },
     "UpdateRandomResultTablesRequest": {
       "name": "UpdateRandomResultTablesRequest",
       "className": "UpdateRandomResultTablesRequest",
@@ -5978,6 +6146,52 @@
     }
   },
   "calls": [
+    {
+      "name": "GetPolicy",
+      "summary": "Gets the requested policy.",
+      "requestDetails": "Views the requested policy. Today, the only supported policy is 'ApiPolicy'.",
+      "subgroup": "Authentication",
+      "titleTiers": null,
+      "url": "/Admin/GetPolicy",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "GetPolicyRequest",
+      "requestExample": "{\r\n  \"PolicyName\": \"ApiPolicy\"\r\n}",
+      "result": "GetPolicyResponse",
+      "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"PolicyName\": \"ApiPolicy\",\r\n    \"Statements\": [\r\n      {\r\n        \"Resource\": \"pfrn:api--*\",\r\n        \"Action\": \"*\",\r\n        \"Effect\": \"Allow\",\r\n        \"Principal\": \"*\",\r\n        \"Comment\": \"The default allow all policy\"\r\n      },\r\n      {\r\n        \"Resource\": \"pfrn:api--/Client/ConfirmPurchase\",\r\n        \"Action\": \"*\",\r\n        \"Effect\": \"Allow\",\r\n        \"Principal\": \"*\",\r\n        \"Comment\": \"This statement allows only request to ConfirmPurchase\"\r\n      }\r\n    ]\r\n  }\r\n}",
+      "AllInclusiveFlags": [
+        "Beta"
+      ],
+      "seeAlso": [
+        "Admin/UpdatePolicy"
+      ],
+      "errors": [
+        "InvalidParams"
+      ]
+    },
+    {
+      "name": "UpdatePolicy",
+      "summary": "Changes a policy for a title",
+      "requestDetails": "Updates permissions for your title. Policies affect what is allowed to happen on your title. Your policy is a collection of statements that, together, govern particular area for your title. Today, the only allowed policy is called 'ApiPolicy' and it governs what calls players are allowed to make.",
+      "subgroup": "Authentication",
+      "titleTiers": null,
+      "url": "/Admin/UpdatePolicy",
+      "auth": "SecretKey",
+      "method": "POST",
+      "request": "UpdatePolicyRequest",
+      "requestExample": "{\r\n  \"PolicyName\": \"ApiPolicy\",\r\n  \"Statements\": [\r\n    {\r\n      \"Resource\": \"pfrn:api--*\",\r\n      \"Action\": \"*\",\r\n      \"Effect\": \"Allow\",\r\n      \"Principal\": \"*\",\r\n      \"Comment\": \"The default allow all policy\"\r\n    },\r\n    {\r\n      \"Resource\": \"pfrn:api--/Client/ConfirmPurchase\",\r\n      \"Action\": \"*\",\r\n      \"Effect\": \"Allow\",\r\n      \"Principal\": \"*\",\r\n      \"Comment\": \"This statement allows only request to ConfirmPurchase\"\r\n    }\r\n  ],\r\n  \"OverwritePolicy\": false\r\n}",
+      "result": "UpdatePolicyResponse",
+      "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"PolicyName\": \"ApiPolicy\",\r\n    \"Statements\": [\r\n      {\r\n        \"Resource\": \"pfrn:api--*\",\r\n        \"Action\": \"*\",\r\n        \"Effect\": \"Allow\",\r\n        \"Principal\": \"*\",\r\n        \"Comment\": \"The default allow all policy\"\r\n      },\r\n      {\r\n        \"Resource\": \"pfrn:api--/Client/ConfirmPurchase\",\r\n        \"Action\": \"*\",\r\n        \"Effect\": \"Allow\",\r\n        \"Principal\": \"*\",\r\n        \"Comment\": \"This statement allows only request to ConfirmPurchase\"\r\n      }\r\n    ]\r\n  }\r\n}",
+      "AllInclusiveFlags": [
+        "Beta"
+      ],
+      "seeAlso": [
+        "Admin/GetPolicy"
+      ],
+      "errors": [
+        "InvalidParams"
+      ]
+    },
     {
       "name": "BanUsers",
       "summary": "Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.",
@@ -7854,6 +8068,13 @@
     }
   ],
   "subgroups": [
+    {
+      "name": "Authentication",
+      "methods": [
+        "GetPolicy",
+        "UpdatePolicy"
+      ]
+    },
     {
       "name": "Account Management",
       "methods": [
