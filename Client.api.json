@@ -2269,7 +2269,7 @@
         },
         {
           "name": "TitleDisplayName",
-          "description": "Title-specific username for the account to find (if no Email is set).",
+          "description": "Title-specific username for the account to find (if no Email is set). Note that if the non-unique Title Display Names option is enabled for the title, attempts to look up users by Title Display Name will always return AccountNotFound.",
           "jsontype": "String",
           "actualtype": "String",
           "optional": true
