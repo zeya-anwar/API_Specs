@@ -1021,7 +1021,7 @@
         },
         {
           "name": "Latitude",
-          "description": "Latidude coordinate of the player's geographic location.",
+          "description": "Latitude coordinate of the player's geographic location.",
           "jsontype": "Number",
           "actualtype": "double",
           "optional": true
