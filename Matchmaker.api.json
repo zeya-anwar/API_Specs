@@ -655,7 +655,8 @@
       ],
       "errors": [
         "InvalidParams",
-        "InvalidRequest"
+        "InvalidRequest",
+        "BuildNotFound"
       ]
     },
     {
@@ -677,7 +678,8 @@
         "Matchmaker/UserInfo"
       ],
       "errors": [
-        "InvalidParams"
+        "InvalidParams",
+        "BuildNotFound"
       ]
     },
     {

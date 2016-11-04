@@ -12413,7 +12413,8 @@
       ],
       "errors": [
         "InvalidParams",
-        "GameModeNotFound"
+        "GameModeNotFound",
+        "BuildNotFound"
       ]
     },
     {
@@ -12438,7 +12439,8 @@
       ],
       "errors": [
         "InvalidParams",
-        "APINotEnabledForGameClientAccess"
+        "APINotEnabledForGameClientAccess",
+        "BuildNotFound"
       ]
     },
     {
