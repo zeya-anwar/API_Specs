@@ -2565,9 +2565,6 @@
       "className": "EffectType",
       "classNameSpace": "PlayFab.Admin.Models",
       "assembly": "PlayFab.Admin.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "isenum": true,
       "enumvalues": [
         {
@@ -3467,9 +3464,6 @@
       "className": "GetPolicyRequest",
       "classNameSpace": "PlayFab.Admin.Models",
       "assembly": "PlayFab.Admin.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "properties": [
         {
           "name": "PolicyName",
@@ -3485,9 +3479,6 @@
       "className": "GetPolicyResponse",
       "classNameSpace": "PlayFab.Admin.Models",
       "assembly": "PlayFab.Admin.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "properties": [
         {
           "name": "PolicyName",
@@ -4917,13 +4908,10 @@
       "className": "PermissionStatement",
       "classNameSpace": "PlayFab.Admin.Models",
       "assembly": "PlayFab.Admin.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "properties": [
         {
           "name": "Resource",
-          "description": "The resource this statements effects. The only supported resources look like '<mytitleid>.playfabpai.com/*' for all apis, or '<mytitleid>.playfabpai.com/Client/ConfirmPurchase' for specific apis.",
+          "description": "The resource this statements effects. The only supported resources look like 'pfrn:api--*' for all apis, or 'pfrn:api--/Client/ConfirmPurchase' for specific apis.",
           "jsontype": "String",
           "actualtype": "String",
           "optional": false
@@ -6847,9 +6835,6 @@
       "className": "UpdatePolicyRequest",
       "classNameSpace": "PlayFab.Admin.Models",
       "assembly": "PlayFab.Admin.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "properties": [
         {
           "name": "PolicyName",
@@ -6881,9 +6866,6 @@
       "className": "UpdatePolicyResponse",
       "classNameSpace": "PlayFab.Admin.Models",
       "assembly": "PlayFab.Admin.Models",
-      "AnyInclusiveFlags": [
-        "Beta"
-      ],
       "properties": [
         {
           "name": "PolicyName",
@@ -7819,9 +7801,6 @@
       "requestExample": "{\r\n  \"PolicyName\": \"ApiPolicy\"\r\n}",
       "result": "GetPolicyResponse",
       "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"PolicyName\": \"ApiPolicy\",\r\n    \"Statements\": [\r\n      {\r\n        \"Resource\": \"pfrn:api--*\",\r\n        \"Action\": \"*\",\r\n        \"Effect\": \"Allow\",\r\n        \"Principal\": \"*\",\r\n        \"Comment\": \"The default allow all policy\"\r\n      },\r\n      {\r\n        \"Resource\": \"pfrn:api--/Client/ConfirmPurchase\",\r\n        \"Action\": \"*\",\r\n        \"Effect\": \"Allow\",\r\n        \"Principal\": \"*\",\r\n        \"Comment\": \"This statement allows only request to ConfirmPurchase\"\r\n      }\r\n    ]\r\n  }\r\n}",
-      "AllInclusiveFlags": [
-        "Beta"
-      ],
       "seeAlso": [
         "Admin/UpdatePolicy"
       ],
@@ -7842,9 +7821,6 @@
       "requestExample": "{\r\n  \"PolicyName\": \"ApiPolicy\",\r\n  \"Statements\": [\r\n    {\r\n      \"Resource\": \"pfrn:api--*\",\r\n      \"Action\": \"*\",\r\n      \"Effect\": \"Allow\",\r\n      \"Principal\": \"*\",\r\n      \"Comment\": \"The default allow all policy\"\r\n    },\r\n    {\r\n      \"Resource\": \"pfrn:api--/Client/ConfirmPurchase\",\r\n      \"Action\": \"*\",\r\n      \"Effect\": \"Allow\",\r\n      \"Principal\": \"*\",\r\n      \"Comment\": \"This statement allows only request to ConfirmPurchase\"\r\n    }\r\n  ],\r\n  \"OverwritePolicy\": false\r\n}",
       "result": "UpdatePolicyResponse",
       "resultExample": "{\r\n  \"code\": 200,\r\n  \"status\": \"OK\",\r\n  \"data\": {\r\n    \"PolicyName\": \"ApiPolicy\",\r\n    \"Statements\": [\r\n      {\r\n        \"Resource\": \"pfrn:api--*\",\r\n        \"Action\": \"*\",\r\n        \"Effect\": \"Allow\",\r\n        \"Principal\": \"*\",\r\n        \"Comment\": \"The default allow all policy\"\r\n      },\r\n      {\r\n        \"Resource\": \"pfrn:api--/Client/ConfirmPurchase\",\r\n        \"Action\": \"*\",\r\n        \"Effect\": \"Allow\",\r\n        \"Principal\": \"*\",\r\n        \"Comment\": \"This statement allows only request to ConfirmPurchase\"\r\n      }\r\n    ]\r\n  }\r\n}",
-      "AllInclusiveFlags": [
-        "Beta"
-      ],
       "seeAlso": [
         "Admin/GetPolicy"
       ],
